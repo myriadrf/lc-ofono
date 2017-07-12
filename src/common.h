@@ -196,3 +196,5 @@ gboolean gprs_proto_from_string(const char *str, enum ofono_gprs_proto *proto);
 const char *gprs_auth_method_to_string(enum ofono_gprs_auth_method auth);
 gboolean gprs_auth_method_from_string(const char *str,
 					enum ofono_gprs_auth_method *auth);
+
+gint ofono_call_compare(gconstpointer a, gconstpointer b);

@@ -363,7 +363,7 @@ static void gemalto_parse_slcc(GAtResult *result, GSList **l,
 	else
 		call->clip_validity = 0;
 
-	*l = g_slist_insert_sorted(*l, call, at_util_call_compare);
+	*l = g_slist_insert_sorted(*l, call, ofono_call_compare);
 
 	if (ret_mpty)
 		*ret_mpty = mpty;
