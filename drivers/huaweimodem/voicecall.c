@@ -346,7 +346,7 @@ static void conf_notify(GAtResult *result, gpointer user_data)
 	ofono_info("Call setup: id %d", call_id);
 
 	l = g_slist_find_custom(vd->calls, GINT_TO_POINTER(call_id),
-				at_util_call_compare_by_id);
+				ofono_call_compare_by_id);
 	if (l == NULL) {
 		ofono_error("Received CONF for untracked call");
 		return;
@@ -383,7 +383,7 @@ static void conn_notify(GAtResult *result, gpointer user_data)
 	ofono_info("Call connect: id %d type %d", call_id, call_type);
 
 	l = g_slist_find_custom(vd->calls, GINT_TO_POINTER(call_id),
-				at_util_call_compare_by_id);
+				ofono_call_compare_by_id);
 	if (l == NULL) {
 		ofono_error("Received CONN for untracked call");
 		return;
@@ -427,7 +427,7 @@ static void cend_notify(GAtResult *result, gpointer user_data)
 				call_id, duration, end_status);
 
 	l = g_slist_find_custom(vd->calls, GINT_TO_POINTER(call_id),
-				at_util_call_compare_by_id);
+				ofono_call_compare_by_id);
 	if (l == NULL) {
 		ofono_error("Received CEND for untracked call");
 		return;

@@ -134,7 +134,7 @@ static void xcallstat_notify(GAtResult *result, gpointer user_data)
 		return;
 
 	l = g_slist_find_custom(vd->calls, GINT_TO_POINTER(id),
-				at_util_call_compare_by_id);
+				ofono_call_compare_by_id);
 
 	if (l == NULL && status != CALL_STATUS_DIALING &&
 				status != CALL_STATUS_INCOMING &&
@@ -772,7 +772,7 @@ static void xcolp_notify(GAtResult *result, gpointer user_data)
 
 	l = g_slist_find_custom(vd->calls,
 				GINT_TO_POINTER(call_id),
-				at_util_call_compare_by_id);
+				ofono_call_compare_by_id);
 	if (l == NULL) {
 		ofono_error("XCOLP for unknown call");
 		return;

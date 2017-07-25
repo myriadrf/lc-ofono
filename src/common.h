@@ -199,3 +199,4 @@ gboolean gprs_auth_method_from_string(const char *str,
 
 gint ofono_call_compare(gconstpointer a, gconstpointer b);
 gint ofono_call_compare_by_status(gconstpointer a, gconstpointer b);
+gint ofono_call_compare_by_id(gconstpointer a, gconstpointer b);
