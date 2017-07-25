@@ -79,7 +79,7 @@ pkginclude_HEADERS = include/log.h include/plugin.h include/history.h \
 			include/cdma-provision.h include/handsfree.h \
 			include/handsfree-audio.h include/siri.h \
 			include/netmon.h include/lte.h include/ims.h \
-			include/storage.h
+			include/storage.h include/call-list.h
 
 nodist_pkginclude_HEADERS = include/version.h
 
@@ -724,7 +724,7 @@ src_ofonod_SOURCES = $(builtin_sources) $(gatchat_sources) \
 			src/handsfree-audio.c src/bluetooth.h \
 			src/hfp.h src/siri.c \
 			src/netmon.c src/lte.c src/ims.c \
-			src/netmonagent.c src/netmonagent.h
+			src/netmonagent.c src/netmonagent.h src/call-list.c
 
 src_ofonod_LDADD = gdbus/libgdbus-internal.la $(builtin_libadd) $(ell_ldadd) \
 			@GLIB_LIBS@ @DBUS_LIBS@ -ldl
@@ -906,7 +906,8 @@ unit_tests = unit/test-common unit/test-util \
 				unit/test-rilmodem-cs \
 				unit/test-rilmodem-sms \
 				unit/test-rilmodem-cb \
-				unit/test-rilmodem-gprs
+				unit/test-rilmodem-gprs \
+				unit/test-call-list
 
 noinst_PROGRAMS = $(unit_tests) \
 			unit/test-sms-root unit/test-mux unit/test-caif
@@ -943,6 +944,12 @@ unit_test_sms_root_SOURCES = unit/test-sms-root.c \
 					src/util.c src/smsutil.c src/storage.c
 unit_test_sms_root_LDADD = @GLIB_LIBS@ $(ell_ldadd)
 unit_objects += $(unit_test_sms_root_OBJECTS)
+
+unit_test_call_list_SOURCES = \
+				     src/common.c src/util.c \
+				     src/call-list.c unit/test-call-list.c
+unit_test_call_list_LDADD = @GLIB_LIBS@ $(ell_ldadd)
+unit_objects += $(unit_test_call_list_OBJECTS)
 
 unit_test_mux_SOURCES = unit/test-mux.c $(gatchat_sources)
 unit_test_mux_LDADD = @GLIB_LIBS@
