@@ -295,7 +295,8 @@ builtin_sources += $(qmi_sources) \
 			drivers/qmimodem/lte.c \
 			drivers/qmimodem/radio-settings.c \
 			drivers/qmimodem/location-reporting.c \
-			drivers/qmimodem/netmon.c
+			drivers/qmimodem/netmon.c \
+			drivers/qmimodem/qmibridge.c
 
 builtin_modules += gobi
 builtin_sources += plugins/gobi.c
@@ -729,7 +730,7 @@ src_ofonod_SOURCES = $(builtin_sources) $(gatchat_sources) \
 			src/netmonagent.c src/netmonagent.h src/call-list.c
 
 src_ofonod_LDADD = gdbus/libgdbus-internal.la $(builtin_libadd) $(ell_ldadd) \
-			@GLIB_LIBS@ @DBUS_LIBS@ -ldl
+			@GLIB_LIBS@ @DBUS_LIBS@ -ldl -lqmi-glib
 
 src_ofonod_LDFLAGS = -Wl,--export-dynamic \
 				-Wl,--version-script=$(srcdir)/src/ofono.ver
@@ -752,7 +753,7 @@ AM_CFLAGS = @DBUS_CFLAGS@ @GLIB_CFLAGS@ $(ell_cflags) $(builtin_cflags) \
 
 AM_CPPFLAGS = -I$(builddir)/include -I$(builddir)/src -I$(srcdir)/src \
 			-I$(srcdir)/gdbus -I$(srcdir)/gisi -I$(srcdir)/gatchat \
-			-I$(srcdir)/btio -I$(srcdir)/gril
+			-I$(srcdir)/btio -I$(srcdir)/gril -I/usr/include/libqmi-glib
 
 doc_files = doc/overview.txt doc/ofono-paper.txt doc/release-faq.txt \
 		doc/manager-api.txt doc/modem-api.txt doc/network-api.txt \
