@@ -5,8 +5,11 @@ After=syslog.target
 [Service]
 Type=dbus
 BusName=org.ofono
+ExecStartPre=@prefix@/bin/quad_modem_power_cycle.sh
 ExecStart=@prefix@/sbin/ofonod -n
 StandardError=null
+Restart=always
+RestartSec=2
 
 [Install]
 WantedBy=multi-user.target
