@@ -1496,6 +1496,11 @@ static gboolean check_remove(gpointer key, gpointer value, gpointer user_data)
 		for (list = modem->devices; list; list = list->next) {
 			struct device_info *info = list->data;
 
+			/* ignore net subsystem to allow the device to be given into
+			 * an lxc container */
+			if (g_strcmp0(info->subsystem, "net") == 0)
+				continue;
+
 			if (g_strcmp0(info->devpath, devpath) == 0)
 				return TRUE;
 		}
