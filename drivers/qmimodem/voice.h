@@ -74,7 +74,8 @@ enum qmi_voice_call_state {
 
 enum qmi_voice_call_type {
 	QMI_CALL_TYPE_VOICE = 0x0,
-	QMI_CALL_TYPE_VOICE_FORCE,
+	QMI_CALL_TYPE_VOICE_FORCE = 0x01,
+	QMI_CALL_TYPE_EMERGENCY = 0x09,
 };
 
 struct qmi_ussd_data {
